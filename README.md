@@ -2,6 +2,11 @@
 
 A modern, responsive personal website designed for GitHub Pages.
 
+Resume files used by the site:
+
+- `assets/resume-krishna.pdf`
+- `assets/resume-nyu.pdf`
+
 ## Local preview
 
 Open `index.html` directly in your browser, or run:
