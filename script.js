@@ -3,9 +3,12 @@ if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
 
+document.body.classList.add("js-enabled");
+
 const revealNodes = document.querySelectorAll(".reveal");
-if (revealNodes.length > 0 && "IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
+let revealObserver = null;
+if ("IntersectionObserver" in window) {
+  revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -16,38 +19,142 @@ if (revealNodes.length > 0 && "IntersectionObserver" in window) {
     },
     { threshold: 0.16 }
   );
-
-  revealNodes.forEach((node) => revealObserver.observe(node));
-} else {
-  revealNodes.forEach((node) => node.classList.add("visible"));
 }
 
-const navLinks = document.querySelectorAll(".main-nav a");
-const sections = [...navLinks]
-  .map((link) => link.getAttribute("href"))
-  .filter((href) => href && href.startsWith("#"))
-  .map((href) => document.querySelector(href))
-  .filter(Boolean);
+function revealElement(node) {
+  if (!node) {
+    return;
+  }
+  if (revealObserver) {
+    revealObserver.observe(node);
+  } else {
+    node.classList.add("visible");
+  }
+}
 
-if (sections.length > 0 && "IntersectionObserver" in window) {
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
+revealNodes.forEach((node) => revealElement(node));
 
-        const currentId = `#${entry.target.id}`;
-        navLinks.forEach((link) => {
-          link.classList.toggle("active", link.getAttribute("href") === currentId);
-        });
-      });
-    },
-    {
-      rootMargin: "-35% 0px -55% 0px",
-      threshold: 0.01
+const viewButtons = document.querySelectorAll("[data-view-button]");
+const viewSections = document.querySelectorAll("[data-view]");
+const navLinks = document.querySelectorAll(".main-nav a[href^='#']");
+
+const idToView = {
+  about: "overview",
+  experience: "experience",
+  projects: "projects",
+  publications: "publications",
+  contact: "contact"
+};
+
+function setActiveView(view, shouldReplaceHash = false) {
+  viewSections.forEach((section) => {
+    const isActive = section.dataset.view === view;
+    section.classList.toggle("active", isActive);
+    if (isActive) {
+      revealElement(section);
     }
-  );
+  });
 
-  sections.forEach((section) => sectionObserver.observe(section));
+  viewButtons.forEach((button) => {
+    const isActive = button.dataset.viewButton === view;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+
+  navLinks.forEach((link) => {
+    const targetId = (link.getAttribute("href") || "").replace("#", "");
+    link.classList.toggle("active", idToView[targetId] === view);
+  });
+
+  if (shouldReplaceHash) {
+    const idForView = Object.entries(idToView).find((entry) => entry[1] === view)?.[0];
+    if (idForView) {
+      history.replaceState(null, "", `#${idForView}`);
+    }
+  }
+}
+
+viewButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setActiveView(button.dataset.viewButton, true);
+  });
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const targetId = (link.getAttribute("href") || "").replace("#", "");
+    const view = idToView[targetId];
+    if (!view) {
+      return;
+    }
+    event.preventDefault();
+    setActiveView(view, true);
+  });
+});
+
+const initialId = window.location.hash.replace("#", "");
+const initialView = idToView[initialId] || "overview";
+setActiveView(initialView, false);
+
+const timelineItems = document.querySelectorAll(".timeline-item");
+timelineItems.forEach((item, index) => {
+  if (index > 0) {
+    item.classList.add("collapsed");
+  }
+  item.addEventListener("click", () => {
+    item.classList.toggle("collapsed");
+  });
+});
+
+const projectToggles = document.querySelectorAll(".project-toggle");
+projectToggles.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const detail = button.parentElement?.querySelector(".project-detail");
+    if (!detail) {
+      return;
+    }
+    const nowOpen = !detail.classList.contains("open");
+    detail.classList.toggle("open", nowOpen);
+    button.textContent = nowOpen ? "Hide impact" : "Show impact";
+  });
+});
+
+const filterChips = document.querySelectorAll(".filter-chip");
+const projectSearch = document.querySelector(".project-search");
+const galleryCards = document.querySelectorAll(".gallery-card[data-category]");
+
+if (filterChips.length > 0 && galleryCards.length > 0) {
+  let activeFilter = "all";
+
+  function applyProjectFilters() {
+    const searchValue = (projectSearch?.value || "").trim().toLowerCase();
+
+    galleryCards.forEach((card) => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = (card.getAttribute("data-keywords") || "").toLowerCase();
+
+      const categoryMatch = activeFilter === "all" || category === activeFilter;
+      const searchMatch = searchValue.length === 0 || keywords.includes(searchValue);
+      card.classList.toggle("hidden", !(categoryMatch && searchMatch));
+    });
+  }
+
+  filterChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      activeFilter = chip.getAttribute("data-filter") || "all";
+      filterChips.forEach((node) => {
+        node.classList.toggle("active", node === chip);
+      });
+      applyProjectFilters();
+    });
+  });
+
+  if (projectSearch) {
+    projectSearch.addEventListener("input", () => {
+      applyProjectFilters();
+    });
+  }
+
+  applyProjectFilters();
 }

@@ -86,8 +86,20 @@
 
       <section class="panel reveal">
         <h2>Featured Projects</h2>
+        <div class="project-filters">
+          <button class="filter-chip active" data-filter="all" type="button">All</button>
+          <button class="filter-chip" data-filter="clinical-ai" type="button">Clinical AI</button>
+          <button class="filter-chip" data-filter="data-viz" type="button">Data Viz</button>
+          <button class="filter-chip" data-filter="bioengineering" type="button">Bioengineering</button>
+          <input
+            class="project-search"
+            type="search"
+            placeholder="Search project keywords..."
+            aria-label="Search projects"
+          />
+        </div>
         <div class="gallery-grid">
-          <article class="gallery-card">
+          <article class="gallery-card" data-category="clinical-ai" data-keywords="abscess drain llm radiology clinical pipeline">
             <img src="./assets/projects/abscessdrain.png" alt="Abscess drain project preview" />
             <div class="gallery-card-content">
               <h3>Abscess Drain Tracking Database</h3>
@@ -102,7 +114,7 @@
             </div>
           </article>
 
-          <article class="gallery-card">
+          <article class="gallery-card" data-category="clinical-ai" data-keywords="dvt outcomes vascular interventional database">
             <img src="./assets/projects/dvt.png" alt="DVT management project preview" />
             <div class="gallery-card-content">
               <h3>Deep Vein Thrombosis Management Database</h3>
@@ -117,7 +129,7 @@
             </div>
           </article>
 
-          <article class="gallery-card">
+          <article class="gallery-card" data-category="clinical-ai" data-keywords="gami chw llm community health low-resource">
             <img src="./assets/projects/chwllm.png" alt="Community health worker LLM project preview" />
             <div class="gallery-card-content">
               <h3>GAMI CHW LLM</h3>
@@ -132,7 +144,7 @@
             </div>
           </article>
 
-          <article class="gallery-card">
+          <article class="gallery-card" data-category="data-viz" data-keywords="cycle-ytics bluebike geospatial mobility map">
             <img src="./assets/projects/bluebike.png" alt="Cycle-ytics visualization project preview" />
             <div class="gallery-card-content">
               <h3>Cycle-ytics</h3>
@@ -152,7 +164,7 @@
             </div>
           </article>
 
-          <article class="gallery-card">
+          <article class="gallery-card" data-category="bioengineering" data-keywords="ph sensitive enzyme delivery hyperoxaluria gastrointestinal">
             <img src="./assets/projects/gastro.png" alt="Hyperoxaluria device project preview" />
             <div class="gallery-card-content">
               <h3>pH-Sensitive Enzyme Delivery Device</h3>
@@ -166,7 +178,7 @@
             </div>
           </article>
 
-          <article class="gallery-card">
+          <article class="gallery-card" data-category="clinical-ai" data-keywords="tooluniverse developer tools discovery ai scientists">
             <img src="./assets/projects/tooluniverse.png" alt="ToolUniverse platform preview" />
             <div class="gallery-card-content">
               <h3>ToolUniverse</h3>

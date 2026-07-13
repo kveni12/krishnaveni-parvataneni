@@ -63,7 +63,7 @@
     <header class="site-header">
       <a class="brand" href="#top">KP</a>
       <nav class="main-nav" aria-label="Main">
-        <a href="#about">About</a>
+        <a href="#about">Overview</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="./projects.html">Project Gallery</a>
@@ -78,10 +78,12 @@
           <p class="eyebrow">MIT | AI & Healthcare</p>
           <h1>Krishnaveni Parvataneni</h1>
           <p class="lead">
-            I am an MIT undergraduate in Artificial Intelligence and
-            Decision-Making, currently building machine learning and data
-            systems that support real clinical decision-making in medical
-            imaging and interventional care.
+            I build machine learning and data systems that support real clinical
+            decision-making in medical imaging and interventional care.
+          </p>
+          <p class="grad-line">
+            MIT S.B. (AI & Decision-Making) 2026 • M.Eng. (Bio-EECS) expected
+            2027
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#projects">View Projects</a>
@@ -111,14 +113,25 @@
         />
       </section>
 
-      <section class="stats-grid reveal" aria-label="Highlights">
+      <section class="panel reveal explorer">
+        <p class="explorer-title">Explore the site</p>
+        <div class="explorer-controls" role="tablist" aria-label="Profile sections">
+          <button class="explore-button active" data-view-button="overview" role="tab" aria-selected="true">Overview</button>
+          <button class="explore-button" data-view-button="experience" role="tab" aria-selected="false">Experience</button>
+          <button class="explore-button" data-view-button="projects" role="tab" aria-selected="false">Projects</button>
+          <button class="explore-button" data-view-button="publications" role="tab" aria-selected="false">Publications</button>
+          <button class="explore-button" data-view-button="contact" role="tab" aria-selected="false">Contact</button>
+        </div>
+      </section>
+
+      <section class="stats-grid reveal explore-section" data-view="overview" aria-label="Highlights">
         <article class="stat">
-          <p class="stat-number">2027</p>
-          <p class="stat-label">Expected MIT Graduation</p>
+          <p class="stat-number">S.B. 2026</p>
+          <p class="stat-label">MIT AI & Decision-Making</p>
         </article>
         <article class="stat">
-          <p class="stat-number">3+</p>
-          <p class="stat-label">Concurrent Research Labs</p>
+          <p class="stat-number">M.Eng. 2027</p>
+          <p class="stat-label">MIT Bio-EECS Track</p>
         </article>
         <article class="stat">
           <p class="stat-number">LLMs + ML</p>
@@ -130,7 +143,7 @@
         </article>
       </section>
 
-      <section id="about" class="panel reveal">
+      <section id="about" class="panel reveal explore-section" data-view="overview">
         <h2>About</h2>
         <p>
           I work at the intersection of machine learning, medicine, and
@@ -150,7 +163,7 @@
         </p>
       </section>
 
-      <section id="experience" class="panel reveal">
+      <section id="experience" class="panel reveal explore-section" data-view="experience">
         <h2>Experience Highlights</h2>
         <div class="timeline">
           <article class="timeline-item">
@@ -230,7 +243,7 @@
         </div>
       </section>
 
-      <section class="panel reveal">
+      <section class="panel reveal explore-section" data-view="overview">
         <h2>Research Focus</h2>
         <div class="focus-grid">
           <article class="focus-item">
@@ -259,7 +272,7 @@
         </div>
       </section>
 
-      <section id="projects" class="panel reveal">
+      <section id="projects" class="panel reveal explore-section" data-view="projects">
         <h2>Selected Projects</h2>
         <p class="section-intro">
           A quick snapshot of projects across healthcare AI, bioengineering, and
@@ -276,6 +289,11 @@
               Built a clinical data pipeline to track drain placements,
               complications, and outcomes across longitudinal follow-up.
             </p>
+            <button class="project-toggle" type="button">Show impact</button>
+            <p class="project-detail">
+              Created longitudinal datasets used to surface follow-up risk
+              signals and simplify physician review of complex cases.
+            </p>
           </article>
           <article class="card">
             <h3>Deep Vein Thrombosis Management Database</h3>
@@ -287,6 +305,11 @@
               Structured treatment and outcomes data to support evidence-based
               decision making in vascular and interventional care.
             </p>
+            <button class="project-toggle" type="button">Show impact</button>
+            <p class="project-detail">
+              Reduced chart-fragmentation by consolidating key clinical events
+              into a queryable, research-ready framework.
+            </p>
           </article>
           <article class="card">
             <h3>GAMI CHW LLM</h3>
@@ -297,6 +320,11 @@
               Designed a language-model assistant concept for community health
               workers in low-resource care environments.
             </p>
+            <button class="project-toggle" type="button">Show impact</button>
+            <p class="project-detail">
+              Emphasized practical guidance and documentation support in
+              settings with limited specialist access.
+            </p>
           </article>
           <article class="card">
             <h3>Cycle-ytics</h3>
@@ -306,6 +334,11 @@
             <p>
               Created an interactive data visualization of Bluebikes traffic,
               bike lane infrastructure, and city-scale cycling accessibility.
+            </p>
+            <button class="project-toggle" type="button">Show impact</button>
+            <p class="project-detail">
+              Highlighted infrastructure gaps and accessibility differences
+              across neighborhoods through map-based storytelling.
             </p>
           </article>
           <article class="card">
@@ -318,6 +351,11 @@
               Researched a star-shaped gastrointestinal device for targeted
               enzyme release in hyperoxaluria therapy.
             </p>
+            <button class="project-toggle" type="button">Show impact</button>
+            <p class="project-detail">
+              Combined device design and assay validation to evaluate
+              translational feasibility of enzyme delivery.
+            </p>
           </article>
           <article class="card">
             <h3>Visualization Critique and Redesign</h3>
@@ -328,11 +366,16 @@
               Redesigned pandemic trend visuals to improve interpretability,
               balancing narrative impact with analytical clarity.
             </p>
+            <button class="project-toggle" type="button">Show impact</button>
+            <p class="project-detail">
+              Demonstrated how design choices can either clarify data truth or
+              unintentionally distort interpretation.
+            </p>
           </article>
         </div>
       </section>
 
-      <section id="publications" class="panel reveal">
+      <section id="publications" class="panel reveal explore-section" data-view="publications">
         <h2>Selected Publications</h2>
         <ul class="publication-list">
           <li>
@@ -391,7 +434,7 @@
         </ul>
       </section>
 
-      <section class="panel reveal">
+      <section class="panel reveal explore-section" data-view="publications">
         <h2>Awards</h2>
         <ul class="publication-list">
           <li>
@@ -400,7 +443,7 @@
         </ul>
       </section>
 
-      <section class="panel split reveal">
+      <section id="contact" class="panel split reveal explore-section" data-view="contact">
         <div>
           <h2>Skills</h2>
           <p>
@@ -416,7 +459,7 @@
             Italian (elementary).
           </p>
         </div>
-        <div id="contact">
+        <div>
           <h2>Contact</h2>
           <p>Cambridge, MA</p>
           <p><a href="mailto:kveni@mit.edu">kveni@mit.edu</a></p>
