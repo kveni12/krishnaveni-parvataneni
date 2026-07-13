@@ -96,6 +96,38 @@ const initialId = window.location.hash.replace("#", "");
 const initialView = idToView[initialId] || "overview";
 setActiveView(initialView, false);
 
+const surpriseButton = document.getElementById("surprise-view");
+if (surpriseButton) {
+  const availableViews = ["overview", "experience", "projects", "publications", "contact"];
+  surpriseButton.addEventListener("click", () => {
+    const randomIndex = Math.floor(Math.random() * availableViews.length);
+    setActiveView(availableViews[randomIndex], true);
+  });
+}
+
+const spotlightButtons = document.querySelectorAll("[data-spotlight-button]");
+const spotlightPanes = document.querySelectorAll("[data-spotlight-pane]");
+
+if (spotlightButtons.length > 0 && spotlightPanes.length > 0) {
+  function setSpotlight(topic) {
+    spotlightButtons.forEach((button) => {
+      button.classList.toggle("active", button.getAttribute("data-spotlight-button") === topic);
+    });
+    spotlightPanes.forEach((pane) => {
+      pane.classList.toggle("active", pane.getAttribute("data-spotlight-pane") === topic);
+    });
+  }
+
+  spotlightButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const topic = button.getAttribute("data-spotlight-button") || "systems";
+      setSpotlight(topic);
+    });
+  });
+
+  setSpotlight("systems");
+}
+
 const timelineItems = document.querySelectorAll(".timeline-item");
 timelineItems.forEach((item, index) => {
   if (index > 0) {
