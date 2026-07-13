@@ -25,3 +25,24 @@ Then visit `http://localhost:4173`.
 
 Your site will be published at:
 `https://kveni12.github.io/krishnaveni-parvataneni/`
+
+## SEO and indexing
+
+This project includes:
+
+- Open Graph and Twitter social metadata
+- Canonical URLs on each page
+- `robots.txt`
+- `sitemap.xml`
+- `Person` structured data (JSON-LD) on homepage
+
+After deploying, you can optionally submit your sitemap to Google Search Console.
+
+## Optional custom domain
+
+If you want a custom domain later:
+
+1. Buy/configure your domain with your DNS provider.
+2. In GitHub repo **Settings > Pages**, set **Custom domain**.
+3. Add DNS records from GitHub's instructions.
+4. Create a `CNAME` file in this repo with your exact domain.

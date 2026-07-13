@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kveni12.github.io/krishnaveni-parvataneni/sitemap.xml
