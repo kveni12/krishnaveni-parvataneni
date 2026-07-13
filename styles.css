@@ -13,6 +13,12 @@
   box-sizing: border-box;
 }
 
+button {
+  font: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -222,28 +228,26 @@ h3 {
 
 .explorer-title {
   margin: 0 0 0.7rem;
-  font-weight: 600;
-  color: #4a4f7d;
+  font-weight: 650;
+  color: #3f4375;
 }
 
 .explorer-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-}
-
-.surprise-button {
-  margin-top: 0.85rem;
+  margin-top: 0.25rem;
 }
 
 .explore-button {
-  border: 1px solid var(--border);
-  background: #f5f7ff;
-  color: var(--muted);
-  padding: 0.45rem 0.78rem;
+  border: 1px solid #d8dcff;
+  background: #f7f7ff;
+  color: #52578c;
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
   border-radius: 999px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   transition: all 0.2s ease;
 }
 
@@ -277,6 +281,7 @@ h3 {
 
 .interactive-spotlight {
   overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
 }
 
 .spotlight-controls {
@@ -287,18 +292,27 @@ h3 {
 }
 
 .spotlight-chip {
-  border: 1px solid var(--border);
-  background: #f8f8ff;
-  color: var(--muted);
+  border: 1px solid #d8dcff;
+  background: #f7f7ff;
+  color: #52578c;
   border-radius: 999px;
-  padding: 0.35rem 0.7rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.94rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.spotlight-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(98, 109, 208, 0.14);
 }
 
 .spotlight-chip.active {
   background: linear-gradient(135deg, #8f71ff, #5f8dff);
   color: #fff;
   border-color: transparent;
+  box-shadow: 0 10px 20px rgba(101, 108, 218, 0.22);
 }
 
 .spotlight-pane {
@@ -306,8 +320,13 @@ h3 {
   border: 1px solid var(--border);
   background: #fbfcff;
   border-radius: 14px;
-  padding: 0.95rem;
+  padding: 1.05rem;
   animation: fadeInUp 0.25s ease;
+}
+
+.spotlight-pane h3 {
+  color: #3f4375;
+  margin-bottom: 0.35rem;
 }
 
 .spotlight-pane.active {

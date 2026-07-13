@@ -96,15 +96,6 @@ const initialId = window.location.hash.replace("#", "");
 const initialView = idToView[initialId] || "overview";
 setActiveView(initialView, false);
 
-const surpriseButton = document.getElementById("surprise-view");
-if (surpriseButton) {
-  const availableViews = ["overview", "experience", "projects", "publications", "contact"];
-  surpriseButton.addEventListener("click", () => {
-    const randomIndex = Math.floor(Math.random() * availableViews.length);
-    setActiveView(availableViews[randomIndex], true);
-  });
-}
-
 const spotlightButtons = document.querySelectorAll("[data-spotlight-button]");
 const spotlightPanes = document.querySelectorAll("[data-spotlight-pane]");
 
